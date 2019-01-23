@@ -141,7 +141,7 @@ uint16_t Artnet::read()
             ArtPollReply.swin[i] = swin[i];
         }
         sprintf((char *)ArtPollReply.nodereport, "%i DMX output universes active.", ArtPollReply.numbports);
-        Udp.beginPacket(broadcast, ART_NET_PORT);//send the packet to the broadcast address
+        Udp.beginPacket(remoteIP, ART_NET_PORT);//send the packet to the origin of the POLL request
         Udp.write((uint8_t *)&ArtPollReply, sizeof(ArtPollReply));
         Udp.endPacket();
 
